@@ -1,13 +1,4 @@
-@import "../assets/styles/theme.css";
-
-.main_container {
-    overflow: hidden;
-}
-    
-.main_container,
-.main_container * {
-    box-sizing: border-box;
-}
+@import "../../assets/styles/theme.css";
     
 .main_container {
     position: relative;
@@ -26,7 +17,7 @@
     width: 100px;
     height: 45%;
     left: 20px;
-    background: url(../assets/images/marvel_logo.svg)
+    background: url(../../assets/images/marvel_logo.svg)
     no-repeat center;
     background-size: cover;
 }
