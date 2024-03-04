@@ -1,0 +1,47 @@
+@import "../../assets/styles/theme.css";
+
+.inner {
+    overflow: hidden;
+    box-sizing: border-box;
+    position: relative;
+    border: 1px solid black;
+    border-width: 1px;
+    margin: 40px;
+    padding: 0px;
+    height: 330px;
+    width: 400px;
+}
+    .img {
+        height: 50%;
+        width: 100%;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        object-fit: fill;
+    }
+
+    .title {
+        margin-top: 10px;   
+        overflow: hidden;
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--danger);
+        padding: 0 10px;
+        margin-bottom: auto;
+        text-decoration: none;
+        max-height: 70px;
+    }
+
+    .description {
+        font-size: 20px;
+        font-weight: 300;
+        color: #787878;
+        padding: 0 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-height: 90px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
