@@ -1,0 +1,64 @@
+@import "../../assets/styles/theme.css";
+
+.box{
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 40px;
+  width: 95%;
+  height: 50px;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+}
+
+.search_form {
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  width: 95%;
+  height: 50px;
+  flex-wrap: wrap;
+}
+
+.page_name{
+  font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.cards_count{
+  margin-left: 20px;
+  margin-top: 10px;
+  font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  color: gray;
+}
+
+.form_control {
+  width: 80%;
+  height: 100%;
+  font-size: 20px;
+  color: grey;
+  padding-left: 20px;
+  justify-content: center; 
+}
+
+.button {
+  border-radius: 0px;
+  width: 300px;
+  height: 100%;
+  background-color: var(--dark-warning);
+  color: white;
+  margin-left: 40px;
+  font-size: 20px;
+  border-color: var(--warning);
+}
+
+.divider {
+  width: 95%;
+  height: 1px;
+  background-color: #ccc;
+  margin: 10px 2%;
+}

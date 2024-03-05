@@ -1,7 +1,7 @@
 .box {
     display: flex;
     flex-wrap: wrap;
-    gap: 40px; 
+    gap: 20px; 
     justify-content: center; 
     align-items: stretch;
 }

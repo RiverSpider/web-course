@@ -10,7 +10,7 @@ export const characters = [
         id: 1,
         name: "many text many text many text many text many text many text many text many text many text",
         img: "",
-        description: "many text many text many text many text many text many text many text many text many text many text many text",
+        description: "many text many text many text many text many text many text many text many text many text many text many text many text many text many text many text many text many text many text many text many text many text many text",
         baseLink: "/characters",
     },
     {

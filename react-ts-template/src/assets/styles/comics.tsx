@@ -1,16 +1,16 @@
 export const comics = [
     {
         id: 0,
-        name: "Tony Stark",
-        img: "../../assets/images/Characters/TonyStark.jpg",
-        description: "Cool guy",
+        name: "Comics about Tony Stark",
+        img: "./src/assets/images/Characters/TonyStark.jpg",
+        description: "Cool comics",
         baseLink: "/comics",
     },
     {
         id: 1,
-        name: "123",
+        name: "many text many text many text many text many text many text many text many text many text",
         img: "",
-        description: "345",
+        description: "many text many text many text many text many text many text many text many text many text many text many text many text many text many text many text many text many text many text many text many text many text many text",
         baseLink: "/comics",
     },
     {
@@ -37,7 +37,7 @@ export const comics = [
     {
         id: 5,
         name: "Tony Stark",
-        img: "../../assets/images/Characters/TonyStark.jpg",
+        img: "./src/assets/images/Characters/TonyStark.jpg",
         description: "Cool guy",
         baseLink: "/comics",
     },
@@ -48,25 +48,5 @@ export const comics = [
         description: "345",
         baseLink: "/comics",
     },
-    {
-        id: 7,
-        name: "aszxc",
-        img: "",
-        description: "",
-        baseLink: "/comics",
-    },
-    {
-        id: 8,
-        name: "qwe",
-        img: "",
-        description: "asd",
-        baseLink: "/comics",
-    },
-    {
-        id: 9,
-        name: "zxc",
-        img: "",
-        description: "098",
-        baseLink: "/comics",
-    },
   ];
+  
