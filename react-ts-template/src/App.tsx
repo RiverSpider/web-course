@@ -11,12 +11,14 @@ export default function App() {
     return (
         <>
             <Header />
+            <div style={{ marginBottom: '10%'}}>
             <Routes>
                 <Route path="/characters" element={<><SearchForm /><Wrap data={characters} /></>} />
                 <Route path="/comics" element={<><SearchForm /><Wrap data={comics} /></>} />
                 <Route path="/characters/:id" element={<InfoPage data={characters} />} />
                 <Route path="/comics/:id" element={<InfoPage data={comics} />} />
             </Routes>
+            </div>
             <Footer />
         </>
     );
