@@ -1,6 +1,6 @@
 @import "../../assets/styles/theme.css";
     
-.main_container {
+.header {
     position: relative;
     width: 100%;
     height: 80px;
