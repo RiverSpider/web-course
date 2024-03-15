@@ -13,6 +13,8 @@
     height: auto;
     flex-wrap: wrap;
     background-color: white;
+    min-height: 100vh;
+    display: flex;
 }
 
 .name{
@@ -41,7 +43,6 @@
 
 .apperance{
     height: auto;
-    font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 20px;
 }
 

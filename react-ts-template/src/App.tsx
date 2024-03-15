@@ -1,25 +1,20 @@
-import { Routes, type RouteObject, Route } from "react-router-dom";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import Wrap from "./components/Wrap/Wrap";
-import { characters } from "./assets/styles/characters.tsx";
-import { comics } from "./assets/styles/comics.tsx";
-import SearchForm from "./components/Search/Search.tsx";
-import InfoPage from "./components/InfoPage/InfoPage.tsx";
+import { Route, Routes } from 'react-router-dom';
+import HeaderFooterLayout from './../src/components/Layouts/HeaderFooterLayout';
+import Characters from './routes/characters';
+import Comics from './routes/comics';
+import CharacterInfo from './routes/characters/id';
+import ComicInfo from './routes/comics/id';
 
 export default function App() {
-    return (
-        <>
-            <Header />
-            <div style={{ marginBottom: '10%'}}>
-            <Routes>
-                <Route path="/characters" element={<><SearchForm /><Wrap data={characters} /></>} />
-                <Route path="/comics" element={<><SearchForm /><Wrap data={comics} /></>} />
-                <Route path="/characters/:id" element={<InfoPage data={characters} />} />
-                <Route path="/comics/:id" element={<InfoPage data={comics} />} />
-            </Routes>
-            </div>
-            <Footer />
-        </>
-    );
+  return (
+    <HeaderFooterLayout>
+    <Routes>
+      <Route path="/" element={<Comics />} />
+      <Route path="characters" element={<Characters />} />
+      <Route path="comics" element={<Comics />} />
+      <Route path="/characters/:id" element={<CharacterInfo />} />
+      <Route path="comics/:id" element={<ComicInfo />} />
+    </Routes>
+    </HeaderFooterLayout>
+  );
 }
