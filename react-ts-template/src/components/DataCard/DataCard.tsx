@@ -4,15 +4,15 @@ import classes from './DataCard.module.css'
 interface DataCardProps {
   id: number
   name: string
-  img: string
+  image: string
   description: string
   baseLink: string
 }
 
-const DataCard = ({ id, name, img, description, baseLink }: DataCardProps) => (
+const DataCard = ({ id, name, image, description, baseLink }: DataCardProps) => (
     <div className={classes.inner}>
       <Link to={`${baseLink}/${id}`}>
-        <img className={classes.img} src={img ? img : "./src/assets/images/Comics/DefaultComics.jpg"} alt="" />
+        <img className={classes.img} src={image ? image : "./src/assets/images/Comics/DefaultComics.jpg"} alt="" />
         <div className={classes.title}>{name}</div>
       </Link>
       <div className={classes.description}>
