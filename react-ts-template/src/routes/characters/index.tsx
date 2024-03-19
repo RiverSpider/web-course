@@ -5,6 +5,8 @@ import posts from "../../api/posts.ts";
 import { Characters } from "../../api/types/post";
 import Pagination from "../../components/Pagination/Pagination.tsx";
 import Title from "../../components/Title/Title.tsx";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CharactersComponent = () => {
   const [characters, setCharacters] = useState<Characters[]>([]);
@@ -21,6 +23,8 @@ const CharactersComponent = () => {
         setTotalCharacters(data.total);
       } catch (error) {
         console.error('Error fetching characters:', error);
+        toast.error("Failed to load characters. Please try again.");
+        throw error;
       }
     };
 
@@ -39,6 +43,8 @@ const CharactersComponent = () => {
       setTotalCharacters(data.total);
     } catch (error) {
       console.error('Error fetching characters by name:', error);
+      toast.error("Failed to load characters by name. Please try again.");
+      throw error;
     }
   };
 

@@ -4,9 +4,12 @@ import Comics from './routes/comics';
 import CharacterInfo from './routes/characters/id';
 import ComicInfo from './routes/comics/id';
 import CharactersComponent from './routes/characters';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
   return (
+    <div>
     <HeaderFooterLayout>
     <Routes>
       <Route path="/" element={<Comics />} />
@@ -18,5 +21,7 @@ export default function App() {
       <Route path="comics/:id" element={<ComicInfo />} />
     </Routes>
     </HeaderFooterLayout>
+    <ToastContainer />
+    </div>
   );
 }

@@ -20,6 +20,7 @@
     "react-dom": "^18.2.0",
     "react-native-nested-scroll-view": "^9.0.0",
     "react-router-dom": "^6.22.2",
+    "react-toastify": "^10.0.5",
     "sort-by": "^1.2.0"
   },
   "devDependencies": {

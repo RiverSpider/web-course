@@ -5,6 +5,8 @@ import Wrap from "./../../components/Wrap/Wrap";
 import posts from "../../api/posts.ts";
 import Pagination from "../../components/Pagination/Pagination.tsx";
 import Title from "../../components/Title/Title.tsx";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ComicsComponent = () => {
   const [comics, setComics] = useState<Comics[]>([]);
@@ -21,6 +23,8 @@ const ComicsComponent = () => {
         setTotalComics(data.total)
       } catch (error) {
         console.error('Error fetching comics:', error);
+        toast.error("Failed to load comics. Please try again.");
+        throw error;
       }
     };
 
@@ -39,6 +43,8 @@ const ComicsComponent = () => {
       setTotalComics(data.total)
     } catch (error) {
       console.error('Error fetching comics by title:', error);
+      toast.error("Failed to load comics by title. Please try again.");
+      throw error;
     }
   };
 
