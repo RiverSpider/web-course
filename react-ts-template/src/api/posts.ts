@@ -7,12 +7,13 @@ const hash = md5(`${ts}${import.meta.env.VITE_PRIVATE_KEY}${import.meta.env.VITE
 const apikey = import.meta.env.VITE_API_KEY;
 
 export default {
-  async getCharactersList(): Promise<Characters[]> {
+  async getCharactersList(offset: number): Promise<Characters[]> {
     const response = await instance.get(`/characters`, {
       params: {
         apikey,
         ts,
         hash,
+        offset,
       },
     });
 
@@ -32,13 +33,14 @@ export default {
     return response.data.data.results[0];
   },
 
-    async getComicsList(): Promise<Comics[]> {
+    async getComicsList(offset: number): Promise<Comics[]> {
 
     const response = await instance.get(`/comics`, {
       params: {
         apikey,
         ts,
         hash,
+        offset,
       },
     });
 

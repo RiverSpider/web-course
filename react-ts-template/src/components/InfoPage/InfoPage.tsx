@@ -1,5 +1,3 @@
-import { characters } from '../../assets/mocks/characters';
-import { comics } from '../../assets/mocks/comics';
 import classes from './InfoPage.module.css'
 import { useNavigate, useParams } from "react-router-dom";
 

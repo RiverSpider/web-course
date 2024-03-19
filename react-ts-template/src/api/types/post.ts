@@ -3,7 +3,6 @@ export interface Characters {
   name: string;
   description: string;
   thumbnail: Image;
-  baseLink: "/characters";
 }
 
 export interface Image {
@@ -17,7 +16,6 @@ export interface Character {
     description: string;
     thumbnail: Image;
     comics: ComicList;
-    baseLink: "/characters";
 }
 
 export interface ComicList {
@@ -37,7 +35,6 @@ export interface Comics {
   title: string;
   description: string;
   thumbnail: Image;
-  baseLink: "/comics";
 }
 
 export interface Comic {
@@ -46,7 +43,6 @@ export interface Comic {
   description: string;
   thumbnail: Image;
   characters: CharacterList;
-  baseLink: "/comics";
 }
 
 export interface CharacterList {

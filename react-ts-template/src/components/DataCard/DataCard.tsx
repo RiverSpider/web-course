@@ -6,12 +6,11 @@ interface DataCardProps {
   name: string
   image: string
   description: string
-  baseLink: string
 }
 
-const DataCard = ({ id, name, image, description, baseLink }: DataCardProps) => (
+const DataCard = ({ id, name, image, description }: DataCardProps) => (
     <div className={classes.inner}>
-      <Link to={`${baseLink}/${id}`}>
+      <Link to={`${id}`}>
         <img className={classes.img} src={image ? image : "./src/assets/images/Comics/DefaultComics.jpg"} alt="" />
         <div className={classes.title}>{name}</div>
       </Link>

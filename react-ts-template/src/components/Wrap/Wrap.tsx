@@ -11,7 +11,6 @@ interface DataItem {
   title: string;
   image: string;
   description: string;
-  baseLink: string;
 }
 
 const Wrap = ({ data }: { data: DataItem[] }) => {
@@ -24,7 +23,6 @@ const Wrap = ({ data }: { data: DataItem[] }) => {
           name={item.name ? item.name: item.title}
           image={`${item.thumbnail.path}.${item.thumbnail.extension}`}
           description={item.description}
-          baseLink={item.baseLink}
         />
       ))}
     </div>
