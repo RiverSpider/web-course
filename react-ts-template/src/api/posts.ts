@@ -7,7 +7,7 @@ const hash = md5(`${ts}${import.meta.env.VITE_PRIVATE_KEY}${import.meta.env.VITE
 const apikey = import.meta.env.VITE_API_KEY;
 
 export default {
-  async getCharactersList(offset: number): Promise<Characters[]> {
+  async getCharactersList(offset: number): Promise<{ results: Characters[], total: number }> {
     const response = await instance.get(`/characters`, {
       params: {
         apikey,
@@ -17,7 +17,7 @@ export default {
       },
     });
 
-    return response.data.data.results;
+    return { results: response.data.data.results, total: response.data.data.total };
   },
 
     async getCharacter(characterId: number): Promise<Character> {
@@ -33,7 +33,7 @@ export default {
     return response.data.data.results[0];
   },
 
-    async getComicsList(offset: number): Promise<Comics[]> {
+    async getComicsList(offset: number): Promise<{ results: Comics[], total: number }> {
 
     const response = await instance.get(`/comics`, {
       params: {
@@ -44,7 +44,7 @@ export default {
       },
     });
 
-    return response.data.data.results;
+    return { results: response.data.data.results, total: response.data.data.total };
   },
 
 
@@ -59,6 +59,36 @@ export default {
     });
 
     return response.data.data.results[0];
+  },
+
+    async searchCharactersByName(query: string, offset: number): Promise<{ results: Characters[], total: number }> {
+
+    const response = await instance.get(`/characters`, {
+      params: {
+        apikey,
+        ts,
+        hash,
+        offset,
+        nameStartsWith: query,
+      },
+    });
+
+    return { results: response.data.data.results, total: response.data.data.total };
+  },
+
+    async searchComicsByTitle(query: string, offset: number): Promise<{ results: Comics[], total: number }> {
+
+    const response = await instance.get(`/comics`, {
+      params: {
+        apikey,
+        ts,
+        hash,
+        offset,
+        titleStartsWith: query,
+      },
+    });
+
+    return { results: response.data.data.results, total: response.data.data.total };
   },
 
 };

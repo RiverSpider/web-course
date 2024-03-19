@@ -11,7 +11,9 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Comics />} />
       <Route path="characters" element={<CharactersComponent />} />
+      <Route path="characters/search/:query" element={<CharactersComponent />} />
       <Route path="comics" element={<Comics />} />
+      <Route path="comics/search/:query" element={<Comics />} />
       <Route path="/characters/:id" element={<CharacterInfo />} />
       <Route path="comics/:id" element={<ComicInfo />} />
     </Routes>
