@@ -18,12 +18,11 @@ const CharacterInfo = () => {
         console.error('Error fetching character:', error);
       }
     };
+
     fetchCharacter();
   }, [id]);
 
-  return (
-    <InfoPage data={character} />
-  );
+  return <InfoPage data={character} />;
 };
 
 export default CharacterInfo;
