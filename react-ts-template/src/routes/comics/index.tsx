@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { Comics } from "../../api/types/post.ts";
+import { useEffect } from "react";
 import SearchForm from "./../../components/Search/Search.tsx";
 import Wrap from "./../../components/Wrap/Wrap";
 import posts from "../../api/posts.ts";
@@ -7,11 +6,11 @@ import Pagination from "../../components/Pagination/Pagination.tsx";
 import Title from "../../components/Title/Title.tsx";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { observer } from "mobx-react";
+import { comicStore } from './../../api/store/stores';
 
-const ComicsComponent = () => {
-  const [comics, setComics] = useState<Comics[]>([]);
-  const [totalComics, setTotalComics] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
+const ComicsComponent = observer(() => {
+  const { comics, totalComics, currentPage } = comicStore;
 
   const itemsPerPage = 20;
 
@@ -19,8 +18,8 @@ const ComicsComponent = () => {
     const fetchComics = async (offset: number) => {
       try {
         const data = await posts.getComicsList(offset);
-        setComics(data.results);
-        setTotalComics(data.total)
+        comicStore.setComics(data.results);
+        comicStore.setTotalComics(data.total)
       } catch (error) {
         console.error('Error fetching comics:', error);
         toast.error("Failed to load comics. Please try again.");
@@ -39,8 +38,8 @@ const ComicsComponent = () => {
   const fetchComicsByTitle = async (query: string, offset: number) => {
     try {
       const data = await posts.searchComicsByTitle(query, offset);
-      setComics(data.results);
-      setTotalComics(data.total)
+      comicStore.setComics(data.results);
+      comicStore.setTotalComics(data.total)
     } catch (error) {
       console.error('Error fetching comics by title:', error);
       toast.error("Failed to load comics by title. Please try again.");
@@ -49,7 +48,7 @@ const ComicsComponent = () => {
   };
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+    comicStore.setCurrentPage(page);
   };
 
   return (
@@ -60,6 +59,6 @@ const ComicsComponent = () => {
       <Pagination totalItems={totalComics} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} />
     </>
   );
-};
+});
 
 export default ComicsComponent;

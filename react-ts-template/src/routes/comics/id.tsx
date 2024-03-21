@@ -1,20 +1,22 @@
 import { useParams } from "react-router-dom";
 import InfoPage from "./../../components/InfoPage/InfoPage.tsx";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import posts from "../../api/posts.ts";
-import { Comic } from "../../api/types/post.ts";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { observer } from "mobx-react";
+import { comicStore } from "../../api/store/stores.ts";
 
-const ComicInfo = () => {
+const ComicInfo = observer(() => {
   const { id } = useParams();
-  const [comic, setComic] = useState<Comic | null>(null);
+  const { getComic } = posts;
+  const { comic } = comicStore;
 
   useEffect(() => {
     const fetchComic = async () => {
       try {
-        const data = await posts.getComic(parseInt(id || '0'));
-        setComic(data);
+        const data = await getComic(parseInt(id || '0'));
+        comicStore.setComic(data);
       } catch (error) {
         console.error('Error fetching comic:', error);
         toast.error("Failed to load comics. Please try again.");
@@ -26,6 +28,6 @@ const ComicInfo = () => {
   }, [id]);
 
   return <InfoPage data={comic} />;
-};
+});
 
 export default ComicInfo;
