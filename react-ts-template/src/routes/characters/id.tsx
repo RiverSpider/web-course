@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import InfoPage from "./../../components/InfoPage/InfoPage.tsx";
-import posts from "../../api/posts.ts";
+import posts from "../../api/charactersPost.ts";
 import { useParams } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

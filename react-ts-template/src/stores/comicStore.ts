@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { Comic, Comics } from '../api/types/post';
+import { Comics, Comic } from '../api/types/comics';
 
 class ComicStore {
   comics: Comics[] = [];

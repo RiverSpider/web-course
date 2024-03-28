@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import SearchForm from "./../../components/Search/Search.tsx";
 import Wrap from "./../../components/Wrap/Wrap";
-import posts from "../../api/posts.ts";
+import posts from "../../api/comicsPost.ts";
 import Pagination from "../../components/Pagination/Pagination.tsx";
 import Title from "../../components/Title/Title.tsx";
 import { toast } from 'react-toastify';

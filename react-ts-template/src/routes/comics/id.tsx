@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import InfoPage from "./../../components/InfoPage/InfoPage.tsx";
 import { useEffect } from "react";
-import posts from "../../api/posts.ts";
+import posts from "../../api/comicsPost.ts";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { observer } from "mobx-react";

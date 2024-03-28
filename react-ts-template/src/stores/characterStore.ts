@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { Character, Characters } from '../api/types/post';
+import { Characters, Character } from '../api/types/characters';
 
 class CharacterStore {
   characters: Characters[] = [];
