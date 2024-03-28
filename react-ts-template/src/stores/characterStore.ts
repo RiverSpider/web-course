@@ -1,5 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import { Characters, Character } from '../api/types/characters';
+import { toast } from 'react-toastify';
+import posts from "../api/charactersPost.ts";
 
 class CharacterStore {
   characters: Characters[] = [];
@@ -25,6 +27,41 @@ class CharacterStore {
 
   setCharacter(character: Character | null) {
     this.character = character;
+  }
+
+  async fetchCharacters (offset: number) {
+      try {
+        const data = await posts.getCharactersList(offset);
+        characterStore.setCharacters(data.results);
+        characterStore.setTotalCharacters(data.total);
+      } catch (error) {
+        console.error('Error fetching characters:', error);
+        toast.error("Failed to load characters. Please try again.");
+        throw error;
+      }
+    }
+
+  async fetchCharactersByName (query: string, offset: number) {
+    try {
+      const data = await posts.searchCharactersByName(query, offset);
+      characterStore.setCharacters(data.results);
+      characterStore.setTotalCharacters(data.total);
+    } catch (error) {
+      console.error('Error fetching characters by name:', error);
+      toast.error("Failed to load characters by name. Please try again.");
+      throw error;
+    }
+  }
+  
+  async fetchCharacter (id: number) {
+    try {
+      const data = await posts.getCharacter(id);
+      this.setCharacter(data);
+    } catch (error) {
+      console.error('Error fetching character:', error);
+      toast.error("Failed to load character. Please try again.");
+      throw error;
+    }
   }
 }
 

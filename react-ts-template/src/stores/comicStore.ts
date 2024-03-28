@@ -1,5 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import { Comics, Comic } from '../api/types/comics';
+import { toast } from 'react-toastify';
+import posts from "../api/comicsPost.ts";
 
 class ComicStore {
   comics: Comics[] = [];
@@ -25,6 +27,41 @@ class ComicStore {
 
   setComic(comic: Comic | null) {
     this.comic = comic;
+  }
+
+  async fetchComics (offset: number) {
+      try {
+        const data = await posts.getComicsList(offset);
+        this.setComics(data.results);
+        this.setTotalComics(data.total);
+      } catch (error) {
+        console.error('Error fetching comics:', error);
+        toast.error("Failed to load comics. Please try again.");
+        throw error;
+      }
+    }
+
+  async fetchComicsByTitle (query: string, offset: number) {
+    try {
+      const data = await posts.searchComicsByTitle(query, offset);
+      this.setComics(data.results);
+      this.setTotalComics(data.total);
+    } catch (error) {
+      console.error('Error fetching comics by title:', error);
+      toast.error("Failed to load comics by title. Please try again.");
+      throw error;
+    }
+  }
+
+  async fetchComic (id: number) {
+    try {
+      const data = await posts.getComic(id);
+      this.setComic(data);
+    } catch (error) {
+      console.error('Error fetching comic:', error);
+      toast.error("Failed to load comic. Please try again.");
+      throw error;
+    }
   }
 }
 
