@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { observer } from "mobx-react";
-import { characterStore } from "../../api/store/stores.ts";
+import { characterStore } from "../../stores/characterStore.ts";
 
 const CharacterInfo = observer(() => {
   const { id } = useParams();

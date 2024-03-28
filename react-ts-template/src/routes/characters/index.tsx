@@ -6,7 +6,7 @@ import Pagination from "../../components/Pagination/Pagination.tsx";
 import Title from "../../components/Title/Title.tsx";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { characterStore } from './../../api/store/stores';
+import { characterStore } from '../../stores/characterStore.ts';
 import { observer } from "mobx-react";
 
 const CharactersComponent = observer(() => {

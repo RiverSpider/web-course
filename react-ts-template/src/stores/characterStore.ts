@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { Character, Characters, Comic, Comics } from '../types/post';
+import { Character, Characters } from '../api/types/post';
 
 class CharacterStore {
   characters: Characters[] = [];
@@ -28,34 +28,6 @@ class CharacterStore {
   }
 }
 
-class ComicStore {
-  comics: Comics[] = [];
-  totalComics: number = 0;
-  currentPage: number = 1;
-  comic: Comic | null = null;
-
-  constructor() {
-    makeAutoObservable(this);
-  }
-
-  setComics(comics: Comics[]) {
-    this.comics = comics;
-  }
-
-  setTotalComics(total: number) {
-    this.totalComics = total;
-  }
-
-  setCurrentPage(page: number) {
-    this.currentPage = page;
-  }
-
-  setComic(comic: Comic | null) {
-    this.comic = comic;
-  }
-}
-
 const characterStore = new CharacterStore();
-const comicStore = new ComicStore();
 
-export { characterStore, comicStore };
+export { characterStore };

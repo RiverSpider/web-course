@@ -5,7 +5,7 @@ import posts from "../../api/posts.ts";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { observer } from "mobx-react";
-import { comicStore } from "../../api/store/stores.ts";
+import { comicStore } from "../../stores/comicStore.ts";
 
 const ComicInfo = observer(() => {
   const { id } = useParams();

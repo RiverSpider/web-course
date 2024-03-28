@@ -7,7 +7,7 @@ import Title from "../../components/Title/Title.tsx";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { observer } from "mobx-react";
-import { comicStore } from './../../api/store/stores';
+import { comicStore } from '../../stores/comicStore.ts';
 
 const ComicsComponent = observer(() => {
   const { comics, totalComics, currentPage } = comicStore;
