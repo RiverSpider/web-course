@@ -10,14 +10,19 @@ type PaginationProps = {
 
 const Pagination: React.FC<PaginationProps> = ({ totalItems, itemsPerPage, onPageChange }) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const visiblePages = 7;
 
   const handleClick = (page: number) => {
-    if (page >= 1 && page <= totalPages) {
+    if (!isLoading && page >= 1 && page <= totalPages) {
+      setIsLoading(true);
       setCurrentPage(page);
       onPageChange(page);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
     }
   };
 

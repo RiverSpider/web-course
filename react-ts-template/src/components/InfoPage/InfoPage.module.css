@@ -41,9 +41,14 @@
     margin-bottom: 20px;
 }
 
-.apperance{
-    height: auto;
-    font-size: 20px;
+.appearance {
+  height: auto;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.appearance:hover {
+  text-decoration: underline;
 }
 
 .verticalContainer {
