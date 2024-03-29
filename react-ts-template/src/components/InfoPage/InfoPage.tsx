@@ -1,14 +1,15 @@
 import classes from './InfoPage.module.css'
-import { Character, CharacterSummary, Comic, ComicSummary } from '../../api/types/post';
+import { Character, ComicSummary } from '../../api/types/characters';
 import { useNavigate } from 'react-router-dom';
+import { Comic, CharacterSummary } from '../../api/types/comics';
 
 interface InfoPageProps {
   data: Character | Comic | null;
+  type: 'Characters' | 'Comics';
 }
 
-const InfoPage = ({ data }: InfoPageProps) => {
+const InfoPage = ({ data, type }: InfoPageProps) => {
   const navigate = useNavigate();
-
   return (
     <div>
       {data && (
@@ -21,10 +22,10 @@ const InfoPage = ({ data }: InfoPageProps) => {
                 <div className={classes.description}>{(data as Comic).description ? (data as Comic).description : 'No description provided'}</div>
               </div>
               <div className={classes.verticalContainer}>
-                <div className={classes.header}>{window.location.pathname.includes('/characters') ? 'Comics' : 'Characters'}</div>
+                <div className={classes.header}>{type}</div>
                 <div>
-                  {(window.location.pathname.includes('/characters') ? (data as Character).comics.items : (data as Comic).characters.items).map((item: CharacterSummary | ComicSummary, index: number) => (
-                    <div key={index} className={classes.appearance} onClick={() => navigate(`${window.location.pathname.includes('/characters') ? '/comics' : '/characters'}/${getCharacterResourceId(item)}`)}>{item.name}</div>
+                  {(type === 'Characters' ? (data as Character).comics.items : (data as Comic).characters.items).map((item: CharacterSummary | ComicSummary, index: number) => (
+                    <div key={index} className={classes.appearance} onClick={() => navigate(`${type === 'Characters' ? '/comics' : '/characters'}/${getCharacterResourceId(item)}`)}>{item.name}</div>
                   ))}
                 </div>
               </div>

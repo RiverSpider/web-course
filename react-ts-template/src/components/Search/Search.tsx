@@ -3,7 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import classes from './Search.module.css';
 import Divider from '../Divider/Divider';
 
-const SearchForm = () => {
+type SearchFormProps = {
+  type: 'characters' | 'comics';
+};
+
+const SearchForm = ({ type }: SearchFormProps) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
   const navigate = useNavigate();
@@ -16,7 +20,7 @@ const SearchForm = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (searchQuery === debouncedQuery && searchQuery !== '') {
-        const path = window.location.pathname.includes('/characters') ? '/characters' : '/comics';
+        const path = type === 'characters' ? '/characters' : '/comics';
         navigate(`${path}/?search=${searchQuery}`);
         window.location.reload();
       }
@@ -25,12 +29,12 @@ const SearchForm = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [searchQuery, debouncedQuery, navigate]);
+  }, [searchQuery, debouncedQuery, navigate, type]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (searchQuery !== '') {
-      const path = window.location.pathname.includes('/characters') ? '/characters' : '/comics';
+      const path = type === 'characters' ? '/characters' : '/comics';
       navigate(`${path}/?search=${searchQuery}`);
       window.location.reload();
     }
@@ -42,7 +46,7 @@ const SearchForm = () => {
         <input
           type='text'
           className={classes.form_control}
-          placeholder={`Search for ${window.location.pathname.includes('/characters') ? 'characters by Name' : 'comics by Title'}`}
+          placeholder={`Search for ${type === 'characters' ? 'characters by Name' : 'comics by Title'}`}
           onChange={handleChange} />
         <button className={classes.button} type='submit'>SEARCH</button>
       </form>

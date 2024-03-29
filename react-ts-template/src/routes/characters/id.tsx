@@ -14,7 +14,7 @@ const CharacterInfo = observer(() => {
     characterStore.fetchCharacter(parseInt(id || '0')).finally(() => setIsLoading(false));
   }, [id]);
 
-  return isLoading ? <Loader /> : <InfoPage data={characterStore.character} />;
+  return isLoading ? <Loader /> : <InfoPage data={characterStore.character} type={"Characters"} />;
 });
 
 export default CharacterInfo;

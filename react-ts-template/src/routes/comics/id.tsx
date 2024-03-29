@@ -13,7 +13,7 @@ const ComicInfo = observer(() => {
     comicStore.fetchComic(parseInt(id || '0')).finally(() => setIsLoading(false));;
   }, [id]);
 
-  return isLoading ? <Loader /> : <InfoPage data={comicStore.comic} />;
+  return isLoading ? <Loader /> : <InfoPage data={comicStore.comic} type={"Comics"} />;
 });
 
 export default ComicInfo;
