@@ -36,7 +36,7 @@ const ComicsComponent = observer(() => {
       <Title totalCharacters={totalComics} type={"Comics"} />
       <SearchForm type={"comics"} />
       { isLoading ? <Loader /> : <Wrap data={comics} />}
-      { !isLoading && <Pagination totalItems={totalComics} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} /> }
+      <Pagination totalItems={totalComics} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} />
     </>
   );
 });

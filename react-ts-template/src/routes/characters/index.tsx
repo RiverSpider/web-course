@@ -35,7 +35,7 @@ const CharactersComponent = observer(() => {
       <Title totalCharacters={totalCharacters} type={"Characters"} />
       <SearchForm type={"characters"} />
       { isLoading ? <Loader /> : <Wrap data={characters} />}
-      { !isLoading && <Pagination totalItems={totalCharacters} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} /> }
+      <Pagination totalItems={totalCharacters} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} setIsLoading={isLoading} />
     </>
   );
 });
