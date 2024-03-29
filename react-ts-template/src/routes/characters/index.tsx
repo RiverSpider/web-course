@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import SearchForm from "./../../components/Search/Search.tsx";
 import Wrap from "./../../components/Wrap/Wrap";
 import Pagination from "../../components/Pagination/Pagination.tsx";
 import Title from "../../components/Title/Title.tsx";
 import 'react-toastify/dist/ReactToastify.css';
 import { characterStore } from '../../stores/characterStore.ts';
+import Loader from "../../components/Loader/Loader.tsx";
 import { observer } from "mobx-react";
 
 const CharactersComponent = observer(() => {
@@ -13,15 +14,17 @@ const CharactersComponent = observer(() => {
 
   const itemsPerPage = 20;
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
+    setIsLoading(true);
+    
     if (query) {
-      fetchCharactersByName(query, (currentPage - 1) * itemsPerPage);
+      fetchCharactersByName(query, (currentPage - 1) * itemsPerPage).finally(() => setIsLoading(false));
     } else {
-      fetchCharacters((currentPage - 1) * itemsPerPage);
+      fetchCharacters((currentPage - 1) * itemsPerPage).finally(() => setIsLoading(false));
     }
   }, [currentPage, query]);
-
-  
 
   const handlePageChange = (page: number) => {
     characterStore.setCurrentPage(page);
@@ -31,8 +34,8 @@ const CharactersComponent = observer(() => {
     <>
       <Title totalCharacters={totalCharacters} />
       <SearchForm />
-      <Wrap data={characters} />
-      <Pagination totalItems={totalCharacters} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} />
+      { isLoading ? <Loader /> : <Wrap data={characters} />}
+      { !isLoading && <Pagination totalItems={totalCharacters} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} /> }
     </>
   );
 });
