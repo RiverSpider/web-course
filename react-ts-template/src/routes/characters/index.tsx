@@ -9,17 +9,17 @@ import { observer } from "mobx-react";
 
 const CharactersComponent = observer(() => {
   const { fetchCharacters, fetchCharactersByName, characters, totalCharacters, currentPage } = characterStore;
+  const query = new URLSearchParams(window.location.search).get('search');
 
   const itemsPerPage = 20;
 
   useEffect(() => {
-    if (window.location.pathname.includes('/search')) {
-      const query = window.location.pathname.split('/search/')[1];
+    if (query) {
       fetchCharactersByName(query, (currentPage - 1) * itemsPerPage);
     } else {
       fetchCharacters((currentPage - 1) * itemsPerPage);
     }
-  }, [currentPage]);
+  }, [currentPage, query]);
 
   
 

@@ -56,7 +56,7 @@ class CharacterStore {
   async fetchCharacter (id: number) {
     try {
       const data = await posts.getCharacter(id);
-      this.setCharacter(data);
+      characterStore.setCharacter(data);
     } catch (error) {
       console.error('Error fetching character:', error);
       toast.error("Failed to load character. Please try again.");

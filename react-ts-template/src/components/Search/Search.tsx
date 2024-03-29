@@ -17,7 +17,7 @@ const SearchForm = () => {
     const timer = setTimeout(() => {
       if (searchQuery === debouncedQuery && searchQuery !== '') {
         const path = window.location.pathname.includes('/characters') ? '/characters' : '/comics';
-        navigate(`${path}/search/${searchQuery}`);
+        navigate(`${path}/?search=${searchQuery}`);
         window.location.reload();
       }
     }, 3000);
@@ -31,7 +31,7 @@ const SearchForm = () => {
     e.preventDefault();
     if (searchQuery !== '') {
       const path = window.location.pathname.includes('/characters') ? '/characters' : '/comics';
-      navigate(`${path}/search/${searchQuery}`);
+      navigate(`${path}/?search=${searchQuery}`);
       window.location.reload();
     }
   };

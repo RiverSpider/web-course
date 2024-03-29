@@ -32,8 +32,8 @@ class ComicStore {
   async fetchComics (offset: number) {
       try {
         const data = await posts.getComicsList(offset);
-        this.setComics(data.results);
-        this.setTotalComics(data.total);
+        comicStore.setComics(data.results);
+        comicStore.setTotalComics(data.total);
       } catch (error) {
         console.error('Error fetching comics:', error);
         toast.error("Failed to load comics. Please try again.");
@@ -44,8 +44,8 @@ class ComicStore {
   async fetchComicsByTitle (query: string, offset: number) {
     try {
       const data = await posts.searchComicsByTitle(query, offset);
-      this.setComics(data.results);
-      this.setTotalComics(data.total);
+      comicStore.setComics(data.results);
+      comicStore.setTotalComics(data.total);
     } catch (error) {
       console.error('Error fetching comics by title:', error);
       toast.error("Failed to load comics by title. Please try again.");
@@ -56,7 +56,7 @@ class ComicStore {
   async fetchComic (id: number) {
     try {
       const data = await posts.getComic(id);
-      this.setComic(data);
+      comicStore.setComic(data);
     } catch (error) {
       console.error('Error fetching comic:', error);
       toast.error("Failed to load comic. Please try again.");
