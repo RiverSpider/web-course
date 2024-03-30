@@ -3,8 +3,8 @@ import classes from "./Wrap.module.css";
 
 interface DataItem {
   thumbnail: {
-  path: string;
-  extension: string;
+  path?: string;
+  extension?: string;
   }
   id: number;
   name: string;
@@ -27,7 +27,7 @@ const Wrap = ({ data }: { data: DataItem[] }) => {
           key={item.id}
           id={item.id}
           name={item.name ? item.name : item.title}
-          image={`${item.thumbnail.path}.${item.thumbnail.extension}`}
+          image={item.thumbnail?.path ? `${item.thumbnail.path}.${item.thumbnail.extension}` : `${item.image}`}
           description={item.description}
         />
       ))}
