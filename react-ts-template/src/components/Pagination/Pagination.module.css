@@ -21,7 +21,7 @@ button:hover {
   color: white;
 }
 
-button:active {
+.active {
   background-color: var(--warning);
   color: white;
 }

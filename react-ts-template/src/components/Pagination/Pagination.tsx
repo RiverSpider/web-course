@@ -29,7 +29,7 @@ const Pagination: React.FC<PaginationProps> = ({ totalItems, itemsPerPage, onPag
 
     for (let i = startPage; i <= endPage; i++) {
       pages.push(
-          <button key={i} onClick={() => handleClick(i)} className={classes.button}>
+          <button key={i} onClick={() => handleClick(i)} className={currentPage === i ? `${classes.button} ${classes.active}` : classes.button}>
             {i}
           </button>
       );
