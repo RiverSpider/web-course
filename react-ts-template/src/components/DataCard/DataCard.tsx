@@ -8,7 +8,7 @@ interface DataCardProps {
   name: string;
   image: string;
   description: string;
-  type: 'characters' | 'comics';
+  type: string;
 }
 
 const DataCard = ({ id, name, image, description, type }: DataCardProps) => {
