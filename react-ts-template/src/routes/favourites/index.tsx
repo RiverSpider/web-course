@@ -13,7 +13,7 @@ const Favourites = observer(() => {
     <>
       <Title totalCharacters={totalCharacters} type={"Favourites"} />
       <Divider />
-      <Wrap data={favorites} type={"favourites"} />
+      <Wrap data={favorites} />
     </>
   );
 });
