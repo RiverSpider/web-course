@@ -10,15 +10,24 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.6.8",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
+    "md5": "^2.3.0",
+    "mobx": "^6.12.0",
+    "mobx-react": "^9.1.0",
+    "mobx-store": "^3.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-loaders": "^3.0.1",
     "react-native-nested-scroll-view": "^9.0.0",
     "react-router-dom": "^6.22.2",
+    "react-toastify": "^10.0.5",
     "sort-by": "^1.2.0"
   },
   "devDependencies": {
+    "@types/md5": "^2.3.5",
+    "@types/node": "^20.11.28",
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^7.0.2",

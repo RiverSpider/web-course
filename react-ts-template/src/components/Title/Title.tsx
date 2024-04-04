@@ -1,15 +1,17 @@
-import { characters } from '../../assets/mocks/characters';
-import { comics } from '../../assets/mocks/comics';
 import classes from './Title.module.css';
 
-export default function Title() {
+interface Props {
+  totalCharacters: number;
+  type: 'Characters' | 'Comics';
+}
+
+export default function Title({ totalCharacters, type }: Props) {
   return (
-    <><div className={classes.box}>
-        <div className={classes.page_name}>{window.location.pathname.includes('/characters') ? 'Characters' : 'Comics'}</div><div className={classes.cards_count}>
-          ({window.location.pathname.includes("/characters")
-              ? characters.length
-              : comics.length})
-        </div>
-      </div>  </>
+    <div className={classes.box}>
+      <div className={classes.page_name}>{type}</div>
+      <div className={classes.cards_count}>
+        ({totalCharacters})
+      </div>
+    </div>
   );
 }
