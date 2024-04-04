@@ -4,15 +4,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { observer } from "mobx-react";
 import useLocalStorage from "../../stores/localStore.ts";
 import Divider from "../../components/Divider/Divider.tsx";
-import { useEffect } from "react";
 
   const Favourites = observer(() => {
     const [favorites, setFavorites] = useLocalStorage('favorites', []);
     const totalCharacters = favorites.length;
-
-    useEffect(() => {
-      console.log("123")
-    }, [favorites])
 
     return (
       <>
