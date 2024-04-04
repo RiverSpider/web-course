@@ -15,12 +15,10 @@ interface DataItem {
   type: string
 }
 
-const Wrap = ({ data }: { data: DataItem[] }) => {
+const Wrap = ({ data, favorites, setFavorites }: { data: DataItem[], favorites: any, setFavorites: any }) => {
   if (data.length === 0) {
     return <div className={classes.box}><div className={classes.centeredMessage}>No results</div></div>;
   }
-
-  const [favorites, setFavorites] = useLocalStorage('favorites', []);
 
   const toggleFavorite = (id: number) => {
     const isCurrentlyFavorited = favorites.some((fav: { id: number }) => fav.id === id);

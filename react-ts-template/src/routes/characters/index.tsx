@@ -7,10 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { characterStore } from '../../stores/characterStore.ts';
 import Loader from "../../components/Loader/Loader.tsx";
 import { observer } from "mobx-react";
+import useLocalStorage from "../../stores/localStore.ts";
 
 const CharactersComponent = observer(() => {
   const { fetchCharacters, fetchCharactersByName, characters, totalCharacters, currentPage } = characterStore;
   const query = new URLSearchParams(window.location.search).get('search');
+  const [favorites, setFavorites] = useLocalStorage('favorites', []);
 
   const itemsPerPage = 20;
 
@@ -34,7 +36,7 @@ const CharactersComponent = observer(() => {
     <>
       <Title totalCharacters={totalCharacters} type={"Characters"} />
       <SearchForm type={"characters"} />
-      { isLoading ? <Loader /> : <Wrap data={characters} />}
+      { isLoading ? <Loader /> : <Wrap data={characters} favorites={favorites} setFavorites={setFavorites} />}
       <Pagination totalItems={totalCharacters} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} setIsLoading={isLoading} />
     </>
   );
