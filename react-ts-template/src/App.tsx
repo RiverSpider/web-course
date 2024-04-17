@@ -6,6 +6,7 @@ import ComicInfo from './routes/comics/id';
 import CharactersComponent from './routes/characters';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Favourites from './routes/favourites';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
       <Route path="comics/search/:query" element={<Comics />} />
       <Route path="/characters/:id" element={<CharacterInfo />} />
       <Route path="comics/:id" element={<ComicInfo />} />
+      <Route path="favourites" element={<Favourites />} />
     </Routes>
     </HeaderFooterLayout>
     <ToastContainer />

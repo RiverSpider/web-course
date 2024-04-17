@@ -2,7 +2,7 @@ import classes from './Title.module.css';
 
 interface Props {
   totalCharacters: number;
-  type: 'Characters' | 'Comics';
+  type: string;
 }
 
 export default function Title({ totalCharacters, type }: Props) {

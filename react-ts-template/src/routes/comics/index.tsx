@@ -7,10 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { observer } from "mobx-react";
 import { comicStore } from '../../stores/comicStore.ts';
 import Loader from "../../components/Loader/Loader.tsx";
+import useLocalStorage from "../../stores/localStore.ts";
 
 const ComicsComponent = observer(() => {
   const { fetchComicsByTitle, fetchComics, comics, totalComics, currentPage } = comicStore;
   const query = new URLSearchParams(window.location.search).get('search');
+  const [favorites, setFavorites] = useLocalStorage('favorites', []);
 
   const itemsPerPage = 20;  
 
@@ -35,7 +37,7 @@ const ComicsComponent = observer(() => {
     <>
       <Title totalCharacters={totalComics} type={"Comics"} />
       <SearchForm type={"comics"} />
-      { isLoading ? <Loader /> : <Wrap data={comics} />}
+      { isLoading ? <Loader /> : <Wrap data={comics} favorites={favorites} setFavorites={setFavorites} />}
       <Pagination totalItems={totalComics} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} setIsLoading={isLoading} />
     </>
   );

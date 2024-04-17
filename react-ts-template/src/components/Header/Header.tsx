@@ -16,6 +16,7 @@ export default function Header() {
       <nav className={classes.navigation_container}>
         <Link to='/characters' className={currentPath.includes('/characters') ? `${classes.navigation_link} ${classes.active}` : classes.navigation_link}>Characters</Link>
         <Link to='/comics' className={currentPath.includes('/comics') ? `${classes.navigation_link} ${classes.active}` : classes.navigation_link}>Comics</Link>
+        <Link to='/favourites' className={currentPath.includes('/favourites') ? `${classes.navigation_link} ${classes.active}` : classes.navigation_link}>Favourites</Link>
       </nav>
     </header>
   );
