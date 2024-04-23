@@ -37,16 +37,16 @@ const CharactersComponent = observer(() => {
   }, [currentPage, query]);
 
   const handleLoadMore = () => {
-  characterStore.setCurrentPage(currentPage + 1);
-  setIsLoading(true);
+    characterStore.setCurrentPage(currentPage + 1);
+    setIsLoading(true);
 
-  if (query) {
-    fetchCharactersByName(query, (currentPage - 1) * itemsPerPage)
-      .finally(() => setIsLoading(false));
-  } else {
-    fetchCharacters((currentPage - 1) * itemsPerPage)
-      .finally(() => setIsLoading(false));
-  }
+    if (query) {
+      fetchCharactersByName(query, (currentPage - 1) * itemsPerPage)
+        .finally(() => setIsLoading(false));
+    } else {
+      fetchCharacters((currentPage - 1) * itemsPerPage)
+        .finally(() => setIsLoading(false));
+    }
   };
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const CharactersComponent = observer(() => {
     <>
       <Title totalCharacters={totalCharacters} type={"Characters"} />
       <SearchForm type={"characters"} />
-      <Wrap data={data} favorites={favorites} setFavorites={setFavorites} onLoadMore={handleLoadMore} isLoading={isLoading} />
+      <Wrap data={data} favorites={favorites} setFavorites={setFavorites} onLoadMore={handleLoadMore} isLoading={isLoading} total={totalCharacters} />
     </>
   );
 });

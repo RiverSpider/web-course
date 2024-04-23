@@ -16,7 +16,7 @@ interface DataItem {
   type: string
 }
 
-const Wrap = ({ data, favorites, setFavorites, onLoadMore }: { data: DataItem[], favorites: any, setFavorites: any, onLoadMore: () => void }, isLoading: boolean) => {
+const Wrap = ({ data, favorites, setFavorites, onLoadMore, isLoading, total }: { data: DataItem[], favorites: any, setFavorites: any, onLoadMore: () => void, isLoading: boolean, total: number }) => {
   if (data.length === 0) {
     return <div className={classes.box}><div className={classes.centeredMessage}>No results</div></div>;
   }
@@ -44,7 +44,7 @@ const Wrap = ({ data, favorites, setFavorites, onLoadMore }: { data: DataItem[],
   };
 
   const components = {
-    Footer: () => (isLoading ? <Loader /> : null)
+    Footer: () => (isLoading && data.length < total ? <Loader /> : <div className={classes.freespace}/>)
   };
   
   return (
