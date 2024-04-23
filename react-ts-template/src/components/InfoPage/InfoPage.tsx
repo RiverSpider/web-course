@@ -22,7 +22,7 @@ const InfoPage = ({ data, type }: InfoPageProps) => {
                 <div className={classes.description}>{(data as Comic).description ? (data as Comic).description : 'No description provided'}</div>
               </div>
               <div className={classes.verticalContainer}>
-                <div className={classes.header}>{type}</div>
+                <div className={classes.header}>{type === 'Characters' ? 'Comics' : 'Characters'}</div>
                 <div>
                   {(type === 'Characters' ? (data as Character).comics.items : (data as Comic).characters.items).map((item: CharacterSummary | ComicSummary, index: number) => (
                     <div key={index} className={classes.appearance} onClick={() => navigate(`${type === 'Characters' ? '/comics' : '/characters'}/${getCharacterResourceId(item)}`)}>{item.name}</div>

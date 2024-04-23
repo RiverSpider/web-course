@@ -13,7 +13,7 @@ import Divider from "../../components/Divider/Divider.tsx";
       <>
         <Title totalCharacters={totalCharacters} type={"Favourites"} />
         <Divider />
-        <Wrap data={favorites} favorites={favorites} setFavorites={setFavorites} />
+        <Wrap data={favorites} favorites={favorites} setFavorites={setFavorites}/>
       </>
     );
   });

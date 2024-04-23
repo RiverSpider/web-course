@@ -1,44 +1,67 @@
 import { useEffect, useState } from "react";
 import SearchForm from "./../../components/Search/Search.tsx";
 import Wrap from "./../../components/Wrap/Wrap";
-import Pagination from "../../components/Pagination/Pagination.tsx";
 import Title from "../../components/Title/Title.tsx";
 import 'react-toastify/dist/ReactToastify.css';
 import { observer } from "mobx-react";
 import { comicStore } from '../../stores/comicStore.ts';
-import Loader from "../../components/Loader/Loader.tsx";
 import useLocalStorage from "../../stores/localStore.ts";
+import { Comics } from "../../api/types/comics.ts";
+import { characterStore } from "../../stores/characterStore.ts";
 
 const ComicsComponent = observer(() => {
   const { fetchComicsByTitle, fetchComics, comics, totalComics, currentPage } = comicStore;
   const query = new URLSearchParams(window.location.search).get('search');
   const [favorites, setFavorites] = useLocalStorage('favorites', []);
 
-  const itemsPerPage = 20;  
+  const itemsPerPage = 20;
+  const [data, setData] = useState<Comics[]>([]);
 
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    characterStore.setCurrentPage(1); 
+    setData([]);
+    characterStore.setCharacters([]); 
+  }, []);
 
+  useEffect(() => {
     setIsLoading(true);
     
     if (query) {
-      fetchComicsByTitle(query, (currentPage - 1) * itemsPerPage).finally(() => setIsLoading(false));
+      fetchComicsByTitle(query, (currentPage - 1) * itemsPerPage)
+        .finally(() => setIsLoading(false));
     } else {
-      fetchComics((currentPage - 1) * itemsPerPage).finally(() => setIsLoading(false));
+      fetchComics((currentPage - 1) * itemsPerPage)
+        .finally(() => setIsLoading(false));
     }
   }, [currentPage, query]);
 
-  const handlePageChange = (page: number) => {
-    comicStore.setCurrentPage(page);
+  const handleLoadMore = () => {
+  comicStore.setCurrentPage(currentPage + 1);
+  setIsLoading(true);
+
+  if (query) {
+    fetchComicsByTitle(query, (currentPage - 1) * itemsPerPage)
+      .finally(() => setIsLoading(false));
+  } else {
+    fetchComics((currentPage - 1) * itemsPerPage)
+      .finally(() => setIsLoading(false));
+  }
   };
+
+  useEffect(() => {
+    setData(prevData => {
+      const uniqueCharacters = comics.filter(comics => !prevData.some(prevCharacter => prevCharacter.id === comics.id));
+      return [...prevData, ...uniqueCharacters];
+    });
+  }, [comics]);
 
   return (
     <>
-      <Title totalCharacters={totalComics} type={"Comics"} />
-      <SearchForm type={"comics"} />
-      { isLoading ? <Loader /> : <Wrap data={comics} favorites={favorites} setFavorites={setFavorites} />}
-      <Pagination totalItems={totalComics} itemsPerPage={itemsPerPage} onPageChange={handlePageChange} setIsLoading={isLoading} />
+      <Title totalCharacters={totalComics} type={"Characters"} />
+      <SearchForm type={"characters"} />
+      <Wrap data={data} favorites={favorites} setFavorites={setFavorites} onLoadMore={handleLoadMore} isLoading={isLoading} />
     </>
   );
 });

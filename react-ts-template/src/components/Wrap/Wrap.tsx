@@ -1,6 +1,7 @@
-import useLocalStorage from "../../stores/localStore";
+import { Virtuoso } from "react-virtuoso";
 import DataCard from "./../DataCard/DataCard";
 import classes from "./Wrap.module.css";
+import Loader from "../Loader/Loader";
 
 interface DataItem {
   thumbnail: {
@@ -15,7 +16,7 @@ interface DataItem {
   type: string
 }
 
-const Wrap = ({ data, favorites, setFavorites }: { data: DataItem[], favorites: any, setFavorites: any }) => {
+const Wrap = ({ data, favorites, setFavorites, onLoadMore }: { data: DataItem[], favorites: any, setFavorites: any, onLoadMore: () => void }, isLoading: boolean) => {
   if (data.length === 0) {
     return <div className={classes.box}><div className={classes.centeredMessage}>No results</div></div>;
   }
@@ -42,20 +43,29 @@ const Wrap = ({ data, favorites, setFavorites }: { data: DataItem[], favorites: 
     }
   };
 
+  const components = {
+    Footer: () => (isLoading ? <Loader /> : null)
+  };
+  
   return (
     <div className={classes.box}>
-      {data.map((item) => (
-        <DataCard
-          key={item.id}
-          id={item.id}
-          name={item.name ? item.name : item.title}
-          image={item.thumbnail?.path ? `${item.thumbnail.path}.${item.thumbnail.extension}` : `${item.image}`}
-          description={item.description}
-          type={item.type ? item.type : (item.name ? "characters" : "comics")}
-          toggleFavorite={toggleFavorite}
-          isFavorite={favorites.some((fav: { id: number }) => fav.id === item.id)}
-        />
-      ))}
+      <Virtuoso
+        useWindowScroll={true}
+        totalCount={data.length}
+        itemContent={index => (
+          <DataCard
+            id={data[index].id}
+            name={data[index].name ? data[index].name : data[index].title}
+            image={data[index].thumbnail?.path ? `${data[index].thumbnail.path}.${data[index].thumbnail.extension}` : `${data[index].image}`}
+            description={data[index].description}
+            type={data[index].type ? data[index].type : (data[index].name ? "characters" : "comics")}
+            toggleFavorite={toggleFavorite}
+            isFavorite={favorites.some((fav: { id: number }) => fav.id === data[index].id)}
+          />
+        )}
+        components={components}
+        endReached={onLoadMore}
+      />
     </div>
   );
 };
