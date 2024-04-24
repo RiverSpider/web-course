@@ -8,6 +8,8 @@ import { observer } from "mobx-react";
 import useLocalStorage from "../../stores/localStore.ts";
 import { Characters } from "../../api/types/characters.ts";
 import { comicStore } from "../../stores/comicStore.ts";
+import classes from "./../../components/Wrap/Wrap.module.css";
+import Loader from "../../components/Loader/Loader.tsx";
 
 const CharactersComponent = observer(() => {
   const { fetchCharacters, fetchCharactersByName, characters, totalCharacters, currentPage } = characterStore;
@@ -60,7 +62,8 @@ const CharactersComponent = observer(() => {
     <>
       <Title totalCharacters={totalCharacters} type={"Characters"} />
       <SearchForm type={"characters"} />
-      <Wrap data={data} favorites={favorites} setFavorites={setFavorites} onLoadMore={handleLoadMore} isLoading={isLoading} total={totalCharacters} />
+      <Wrap data={data} favorites={favorites} setFavorites={setFavorites} onLoadMore={handleLoadMore} />
+      {isLoading && data.length < totalCharacters ? <Loader /> : <div className={classes.freespace} />}
     </>
   );
 });

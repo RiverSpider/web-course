@@ -1,7 +1,6 @@
-import { Virtuoso } from "react-virtuoso";
+import { VirtuosoGrid } from "react-virtuoso";
 import DataCard from "./../DataCard/DataCard";
 import classes from "./Wrap.module.css";
-import Loader from "../Loader/Loader";
 
 interface DataItem {
   thumbnail: {
@@ -16,7 +15,7 @@ interface DataItem {
   type: string
 }
 
-const Wrap = ({ data, favorites, setFavorites, onLoadMore, isLoading, total }: { data: DataItem[], favorites: any, setFavorites: any, onLoadMore: () => void, isLoading: boolean, total: number }) => {
+const Wrap = ({ data, favorites, setFavorites, onLoadMore }: { data: DataItem[], favorites: any, setFavorites: any, onLoadMore: () => void, isLoading: boolean, total: number }) => {
   if (data.length === 0) {
     return <div className={classes.box}><div className={classes.centeredMessage}>No results</div></div>;
   }
@@ -42,31 +41,27 @@ const Wrap = ({ data, favorites, setFavorites, onLoadMore, isLoading, total }: {
       }
     }
   };
-
-  const components = {
-    Footer: () => (isLoading && data.length < total ? <Loader /> : <div className={classes.freespace}/>)
-  };
   
   return (
-    <div className={classes.box}>
-      <Virtuoso
-        useWindowScroll={true}
-        totalCount={data.length}
-        itemContent={index => (
-          <DataCard
-            id={data[index].id}
-            name={data[index].name ? data[index].name : data[index].title}
-            image={data[index].thumbnail?.path ? `${data[index].thumbnail.path}.${data[index].thumbnail.extension}` : `${data[index].image}`}
-            description={data[index].description}
-            type={data[index].type ? data[index].type : (data[index].name ? "characters" : "comics")}
-            toggleFavorite={toggleFavorite}
-            isFavorite={favorites.some((fav: { id: number }) => fav.id === data[index].id)}
-          />
-        )}
-        components={components}
-        endReached={onLoadMore}
-      />
-    </div>
+    <VirtuosoGrid
+      useWindowScroll={true}
+      totalCount={data.length}
+      listClassName={classes.box}
+      itemContent={index => (
+        <>
+        <DataCard
+          id={data[index].id}
+          name={data[index].name ? data[index].name : data[index].title}
+          image={data[index].thumbnail?.path ? `${data[index].thumbnail.path}.${data[index].thumbnail.extension}` : `${data[index].image}`}
+          description={data[index].description}
+          type={data[index].type ? data[index].type : (data[index].name ? "characters" : "comics")}
+          toggleFavorite={toggleFavorite}
+          isFavorite={favorites.some((fav: { id: number }) => fav.id === data[index].id)}
+        />
+        </>
+      )}
+      endReached={onLoadMore}
+    /> 
   );
 };
 

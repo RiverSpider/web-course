@@ -8,6 +8,8 @@ import { comicStore } from '../../stores/comicStore.ts';
 import useLocalStorage from "../../stores/localStore.ts";
 import { Comics } from "../../api/types/comics.ts";
 import { characterStore } from "../../stores/characterStore.ts";
+import classes from "./../../components/Wrap/Wrap.module.css";
+import Loader from "../../components/Loader/Loader.tsx";
 
 const ComicsComponent = observer(() => {
   const { fetchComicsByTitle, fetchComics, comics, totalComics, currentPage } = comicStore;
@@ -62,6 +64,7 @@ const ComicsComponent = observer(() => {
       <Title totalCharacters={totalComics} type={"Characters"} />
       <SearchForm type={"characters"} />
       <Wrap data={data} favorites={favorites} setFavorites={setFavorites} onLoadMore={handleLoadMore} isLoading={isLoading} />
+      {isLoading && data.length < totalComics ? <Loader /> : <div className={classes.freespace} />}
     </>
   );
 });
