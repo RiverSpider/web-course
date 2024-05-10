@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { observer } from "mobx-react";
 import { comicStore } from '../../stores/comicStore.ts';
 import useLocalStorage from "../../stores/localStore.ts";
-import { Comics } from "../../api/types/comics.ts";
 import classes from "./../../components/Wrap/Wrap.module.css";
 import Loader from "../../components/Loader/Loader.tsx";
 
@@ -16,20 +15,10 @@ const ComicsComponent = observer(() => {
   const [favorites, setFavorites] = useLocalStorage('favorites', []);
 
   const itemsPerPage = 20;
-  const [data, setData] = useState<Comics[]>([]);
-
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    return () => {
-    comicStore.setCurrentPage(1);
-    comicStore.setComics([]);
-    }
-  }, []);
-
-  useEffect(() => {
     setIsLoading(true);
-    
     if (query) {
       fetchComicsByTitle(query, (currentPage - 1) * itemsPerPage)
         .finally(() => setIsLoading(false));
@@ -40,23 +29,16 @@ const ComicsComponent = observer(() => {
   }, [currentPage, query]);
 
   const handleLoadMore = () => {
-  comicStore.setCurrentPage(currentPage + 1);
-  setIsLoading(true);
+    comicStore.setCurrentPage(currentPage + 1);
+    setIsLoading(true);
   };
-
-  useEffect(() => {
-    setData(prevData => {
-      const uniqueCharacters = comics.filter(comics => !prevData.some(prevCharacter => prevCharacter.id === comics.id));
-      return [...prevData, ...uniqueCharacters];
-    });
-  }, [comics]);
 
   return (
     <>
-      <Title totalCharacters={totalComics} type={"Characters"} />
-      <SearchForm type={"characters"} />
-      <Wrap data={data} favorites={favorites} setFavorites={setFavorites} onLoadMore={handleLoadMore} isLoading={isLoading} />
-      {isLoading && data.length < totalComics ? <Loader /> : <div className={classes.freespace} />}
+      <Title totalCharacters={totalComics} type={"Comics"} />
+      <SearchForm type={"comics"} />
+      <Wrap data={comics} favorites={favorites} setFavorites={setFavorites} onLoadMore={handleLoadMore} isLoading={isLoading} />
+      {isLoading && comics.length < totalComics ? <Loader /> : <div className={classes.freespace} />}
     </>
   );
 });

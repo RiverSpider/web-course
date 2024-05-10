@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { characterStore } from '../../stores/characterStore.ts';
 import { observer } from "mobx-react";
 import useLocalStorage from "../../stores/localStore.ts";
-import { Characters } from "../../api/types/characters.ts";
 import classes from "./../../components/Wrap/Wrap.module.css";
 import Loader from "../../components/Loader/Loader.tsx";
 
@@ -16,16 +15,7 @@ const CharactersComponent = observer(() => {
   const [favorites, setFavorites] = useLocalStorage('favorites', []);
 
   const itemsPerPage = 20;
-  const [data, setData] = useState<Characters[]>([]);
-
   const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    return () => {
-    characterStore.setCurrentPage(1); 
-    characterStore.setCharacters([]); 
-    }
-  }, []);
 
   useEffect(() => {
     setIsLoading(true);
@@ -43,19 +33,12 @@ const CharactersComponent = observer(() => {
     setIsLoading(true);
   };
 
-  useEffect(() => {
-    setData(prevData => {
-      const uniqueCharacters = characters.filter(character => !prevData.some(prevCharacter => prevCharacter.id === character.id));
-      return [...prevData, ...uniqueCharacters];
-    });
-  }, [characters]);
-
   return (
     <>
       <Title totalCharacters={totalCharacters} type={"Characters"} />
       <SearchForm type={"characters"} />
-      <Wrap data={data} favorites={favorites} setFavorites={setFavorites} onLoadMore={handleLoadMore} />
-      {isLoading && data.length < totalCharacters ? <Loader /> : <div className={classes.freespace} />}
+      <Wrap data={characters} favorites={favorites} setFavorites={setFavorites} onLoadMore={handleLoadMore} />
+      {isLoading && characters.length < totalCharacters ? <Loader /> : <div className={classes.freespace} />}
     </>
   );
 });

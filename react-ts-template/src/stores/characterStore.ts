@@ -13,8 +13,10 @@ class CharacterStore {
     makeAutoObservable(this);
   }
 
-  setCharacters(characters: Characters[]) {
-    this.characters = characters;
+  setCharacters(newCharacters: Characters[]) {
+    const uniqueCharacters = newCharacters.filter(newCharacter => 
+      !this.characters.some(existingCharacter => existingCharacter.id === newCharacter.id));
+    this.characters = [...this.characters, ...uniqueCharacters];
   }
 
   setTotalCharacters(total: number) {
