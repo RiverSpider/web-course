@@ -7,7 +7,6 @@ import { observer } from "mobx-react";
 import { comicStore } from '../../stores/comicStore.ts';
 import useLocalStorage from "../../stores/localStore.ts";
 import { Comics } from "../../api/types/comics.ts";
-import { characterStore } from "../../stores/characterStore.ts";
 import classes from "./../../components/Wrap/Wrap.module.css";
 import Loader from "../../components/Loader/Loader.tsx";
 
@@ -22,9 +21,10 @@ const ComicsComponent = observer(() => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    characterStore.setCurrentPage(1); 
-    setData([]);
-    characterStore.setCharacters([]); 
+    return () => {
+    comicStore.setCurrentPage(1);
+    comicStore.setComics([]);
+    }
   }, []);
 
   useEffect(() => {
