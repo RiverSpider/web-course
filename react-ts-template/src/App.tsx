@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import HeaderFooterLayout from './../src/components/Layouts/HeaderFooterLayout';
 import Comics from './routes/comics';
+import Main from './routes/main';
 import CharacterInfo from './routes/characters/id';
 import ComicInfo from './routes/comics/id';
 import CharactersComponent from './routes/characters';
@@ -13,7 +14,7 @@ export default function App() {
     <div>
     <HeaderFooterLayout>
     <Routes>
-      <Route path="/" element={<Comics />} />
+      <Route path="/" element={<Main />} />
       <Route path="characters" element={<CharactersComponent />} />
       <Route path="characters/search/:query" element={<CharactersComponent />} />
       <Route path="comics" element={<Comics />} />
