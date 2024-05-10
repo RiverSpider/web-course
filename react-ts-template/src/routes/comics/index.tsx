@@ -42,14 +42,6 @@ const ComicsComponent = observer(() => {
   const handleLoadMore = () => {
   comicStore.setCurrentPage(currentPage + 1);
   setIsLoading(true);
-
-  if (query) {
-    fetchComicsByTitle(query, (currentPage - 1) * itemsPerPage)
-      .finally(() => setIsLoading(false));
-  } else {
-    fetchComics((currentPage - 1) * itemsPerPage)
-      .finally(() => setIsLoading(false));
-  }
   };
 
   useEffect(() => {

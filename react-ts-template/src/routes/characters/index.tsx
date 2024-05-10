@@ -41,14 +41,6 @@ const CharactersComponent = observer(() => {
   const handleLoadMore = () => {
     characterStore.setCurrentPage(currentPage + 1);
     setIsLoading(true);
-
-    if (query) {
-      fetchCharactersByName(query, (currentPage - 1) * itemsPerPage)
-        .finally(() => setIsLoading(false));
-    } else {
-      fetchCharacters((currentPage - 1) * itemsPerPage)
-        .finally(() => setIsLoading(false));
-    }
   };
 
   useEffect(() => {
