@@ -1,13 +1,5 @@
 self.addEventListener('install', event => {
-  console.log('Service Worker installing.');
-});
-
-self.addEventListener('activate', event => {
-  console.log('Service Worker activating.');
-});
-
-self.addEventListener('fetch', event => {
-  console.log('Fetching:', event.request.url);
+  self.skipWaiting();
 });
 
 self.addEventListener('notificationclick', function(event) {
@@ -25,4 +17,28 @@ self.addEventListener('notificationclick', function(event) {
       }
     })
   );
+});
+
+self.addEventListener('pushsubscriptionchange', event => {
+  console.log('Subscription expired');
+  event.waitUntil(
+    self.registration.pushManager.subscribe(event.oldSubscription.options)
+    .then(subscription => {
+      return fetch('http://localhost:5173', {
+        method: 'POST',
+        body: JSON.stringify(subscription),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    })
+  );
+});
+
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'favorite-change') {
+    self.registration.showNotification(event.data.title, {
+      body: event.data.message,
+    });
+  }
 });
