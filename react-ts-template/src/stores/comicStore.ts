@@ -13,8 +13,10 @@ class ComicStore {
     makeAutoObservable(this);
   }
 
-  setComics(comics: Comics[]) {
-    this.comics = comics;
+  setComics(newComics: Comics[]) {
+    const uniqueComics = newComics.filter(newComic => 
+      !this.comics.some(existingComic => existingComic.id === newComic.id));
+    this.comics = [...this.comics, ...uniqueComics];
   }
 
   setTotalComics(total: number) {

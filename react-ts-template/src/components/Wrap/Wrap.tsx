@@ -1,4 +1,4 @@
-import useLocalStorage from "../../stores/localStore";
+import { VirtuosoGrid } from "react-virtuoso";
 import DataCard from "./../DataCard/DataCard";
 import classes from "./Wrap.module.css";
 
@@ -15,7 +15,7 @@ interface DataItem {
   type: string
 }
 
-const Wrap = ({ data, favorites, setFavorites }: { data: DataItem[], favorites: any, setFavorites: any }) => {
+const Wrap = ({ data, favorites, setFavorites, onLoadMore }: { data: DataItem[], favorites: any, setFavorites: any, onLoadMore: () => void, isLoading: boolean, total: number }) => {
   if (data.length === 0) {
     return <div className={classes.box}><div className={classes.centeredMessage}>No results</div></div>;
   }
@@ -41,22 +41,27 @@ const Wrap = ({ data, favorites, setFavorites }: { data: DataItem[], favorites: 
       }
     }
   };
-
+  
   return (
-    <div className={classes.box}>
-      {data.map((item) => (
+    <VirtuosoGrid
+      useWindowScroll={true}
+      totalCount={data.length}
+      listClassName={classes.box}
+      itemContent={index => (
+        <>
         <DataCard
-          key={item.id}
-          id={item.id}
-          name={item.name ? item.name : item.title}
-          image={item.thumbnail?.path ? `${item.thumbnail.path}.${item.thumbnail.extension}` : `${item.image}`}
-          description={item.description}
-          type={item.type ? item.type : (item.name ? "characters" : "comics")}
+          id={data[index].id}
+          name={data[index].name ? data[index].name : data[index].title}
+          image={data[index].thumbnail?.path ? `${data[index].thumbnail.path}.${data[index].thumbnail.extension}` : `${data[index].image}`}
+          description={data[index].description}
+          type={data[index].type ? data[index].type : (data[index].name ? "characters" : "comics")}
           toggleFavorite={toggleFavorite}
-          isFavorite={favorites.some((fav: { id: number }) => fav.id === item.id)}
+          isFavorite={favorites.some((fav: { id: number }) => fav.id === data[index].id)}
         />
-      ))}
-    </div>
+        </>
+      )}
+      endReached={onLoadMore}
+    /> 
   );
 };
 
