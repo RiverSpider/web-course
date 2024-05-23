@@ -36,7 +36,7 @@ self.addEventListener('pushsubscriptionchange', event => {
 });
 
 self.addEventListener('message', event => {
-  if (event.data && event.data.type === 'favorite-change') {
+  if (event.data && (event.data.type === 'favorite-change' || event.data.type === 'Get-Subscription')) {
     self.registration.showNotification(event.data.title, {
       body: event.data.message,
     });
