@@ -8,10 +8,12 @@ import CharactersComponent from './routes/characters';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Favourites from './routes/favourites';
+import NotificationRequest from './../src/components/NotificationRequest/NotificationRequest';
 
 export default function App() {
   return (
     <div>
+    <NotificationRequest />
     <HeaderFooterLayout>
     <Routes>
       <Route path="/" element={<Main />} />
