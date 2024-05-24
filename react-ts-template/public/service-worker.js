@@ -19,22 +19,6 @@ self.addEventListener('notificationclick', function(event) {
   );
 });
 
-self.addEventListener('pushsubscriptionchange', event => {
-  console.log('Subscription expired');
-  event.waitUntil(
-    self.registration.pushManager.subscribe(event.oldSubscription.options)
-    .then(subscription => {
-      return fetch('http://localhost:5173', {
-        method: 'POST',
-        body: JSON.stringify(subscription),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-    })
-  );
-});
-
 self.addEventListener('message', event => {
   if (event.data && (event.data.type === 'favorite-change' || event.data.type === 'Get-Subscription')) {
     self.registration.showNotification(event.data.title, {

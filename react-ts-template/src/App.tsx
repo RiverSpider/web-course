@@ -9,9 +9,11 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Favourites from './routes/favourites';
 import NotificationRequest from './../src/components/NotificationRequest/NotificationRequest';
+import usePushNotification from './../src/client/subscription';
 
 export default function App() {
   NotificationRequest();
+  usePushNotification();
   return (
     <div>
     <HeaderFooterLayout>
