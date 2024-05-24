@@ -2,6 +2,16 @@ import { useEffect } from "react";
 
 const NotificationRequest = () => {
   useEffect(() => {
+    const sendNotification = (title: string, message: string) => {
+      if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+        navigator.serviceWorker.controller.postMessage({
+          type: 'Get-Subscription',
+          title: title,
+          message: message
+        });
+      }
+    };
+
     if ('Notification' in window && 'serviceWorker' in navigator) {
       const registration = navigator.serviceWorker.ready;
 
@@ -29,18 +39,6 @@ const NotificationRequest = () => {
       });
     }
   }, []);
-
-    const sendNotification = (title: string, message: string) => {
-    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-      navigator.serviceWorker.controller.postMessage({
-        type: 'Get-Subscription',
-        title: title,
-        message: message
-      });
-    }
-  };
-
-  return null;
 };
 
 export default NotificationRequest;

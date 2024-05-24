@@ -11,9 +11,9 @@ import Favourites from './routes/favourites';
 import NotificationRequest from './../src/components/NotificationRequest/NotificationRequest';
 
 export default function App() {
+  NotificationRequest();
   return (
     <div>
-    <NotificationRequest />
     <HeaderFooterLayout>
     <Routes>
       <Route path="/" element={<Main />} />
