@@ -26,3 +26,18 @@ self.addEventListener('message', event => {
     });
   }
 });
+
+self.addEventListener('push', event => {
+  let data = {};
+  if (event.data) {
+    data = event.data.json();
+  }
+
+  const title = data.title || 'Notification';
+  const options = {
+    body: data.body || 'Cool notification',
+  };
+
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
