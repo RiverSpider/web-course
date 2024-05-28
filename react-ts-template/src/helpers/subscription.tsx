@@ -6,7 +6,7 @@ const usePushNotification = () => {
       const registration = await navigator.serviceWorker.ready;
       const subscription = await registration.pushManager.subscribe({
         userVisibleOnly: true,
-        applicationServerKey: 'BFJV7A9uMjpMMi6ZNlcI_RrPLXmWReP1NvulUuXfGH6QC-Ey-eztNEwb7LEIfEVcZmIOx48beyX21TNxQcusTWo',
+        applicationServerKey: 'BKINX2vYrAZlboC03i-FIkXWlE331xxUKxjkKAeSkXpqFfmRfXe-iV-hDnJCicY_xS87lq60eY767LFOpKDZZZM',
       });
 
       sendSubscriptionToServer(subscription);
@@ -17,7 +17,7 @@ const usePushNotification = () => {
 
   const sendSubscriptionToServer = async (subscription: PushSubscription) => {
     try {
-      const response = await fetch('http://localhost:5173/subscribe', {
+      const response = await fetch('http://localhost:5170/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

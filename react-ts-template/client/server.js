@@ -1,16 +1,19 @@
-const webpush = require('web-push');
-const express = require('express');
-const bodyParser = require('body-parser');
+import web_push from 'web-push';
+const { setVapidDetails, sendNotification } = web_push;
+import express from 'express';
+import pkg from 'body-parser';
+const { json } = pkg;
 
 const app = express();
-app.use(bodyParser.json());
+app.use(json());
 
 const vapidKeys = {
   publicKey: 'BKINX2vYrAZlboC03i-FIkXWlE331xxUKxjkKAeSkXpqFfmRfXe-iV-hDnJCicY_xS87lq60eY767LFOpKDZZZM',
   privateKey: 'q2kmbT-2YhWTua0z3hrmY0ryT46tNPoPhZuSFlbSEUU',
 };
 
-webpush.setVapidDetails(
+setVapidDetails(
+  'mailto:konstantin.zelinsky@effective.band',
   vapidKeys.publicKey,
   vapidKeys.privateKey
 );
@@ -33,7 +36,7 @@ app.post('/sendNotification', (req, res) => {
   const promises = [];
   subscriptions.forEach(subscription => {
     promises.push(
-      webpush.sendNotification(subscription, JSON.stringify(notificationPayload))
+      sendNotification(subscription, JSON.stringify(notificationPayload))
     );
   });
 
@@ -44,6 +47,6 @@ app.post('/sendNotification', (req, res) => {
   });
 });
 
-app.listen(5173, () => {
-  console.log('Server working on 5173');
+app.listen(5170, () => {
+  console.log('Server working on 5170');
 });
