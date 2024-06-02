@@ -1,0 +1,18 @@
+{
+  "welcome": "Welcome",
+  "characters": "Characters",
+  "comics": "Comics",
+  "favourites": "Favourites",
+  "data_provided_by": "Data provided by",
+  "default_description": "No description provided",
+  "you_have": "You have",
+  "removed": "removed",
+  "added": "added",
+  "favorite_changed": "Favorite Changed",
+  "to_your_favorites": "to your favorites",
+  "loading": "Loading",
+  "search_for": "Search for",
+  "characters_by_name": "characters by Name",
+  "comics_by_title": "comics by Title",
+  "search": "SEARCH"
+}

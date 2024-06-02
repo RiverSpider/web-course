@@ -1,9 +1,11 @@
 import classes from './Loader.module.css';
+import { useTranslation } from 'react-i18next';
 
-const Loader = () => (
-  <div className={classes.loader_container}>
-    Loading ...
+export default function Loader() {
+  const { t } = useTranslation();
+  return (
+    <div className={classes.loader_container}>
+    {t('loading')} ...
   </div>
-);
-
-export default Loader;
+  );
+}

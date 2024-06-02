@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import classes from './Search.module.css';
 import Divider from '../Divider/Divider';
+import { useTranslation } from 'react-i18next';
 
 type SearchFormProps = {
   type: 'characters' | 'comics';
 };
 
 const SearchForm = ({ type }: SearchFormProps) => {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
   const navigate = useNavigate();
@@ -46,9 +48,9 @@ const SearchForm = ({ type }: SearchFormProps) => {
         <input
           type='text'
           className={classes.form_control}
-          placeholder={`Search for ${type === 'characters' ? 'characters by Name' : 'comics by Title'}`}
+          placeholder={`${t('search_for')} ${type === 'characters' ? `${t('characters_by_name')}` : `${t('comics_by_title')}`}`}
           onChange={handleChange} />
-        <button className={classes.button} type='submit'>SEARCH</button>
+        <button className={classes.button} type='submit'>{t('search')}</button>
       </form>
       <Divider /></>
     

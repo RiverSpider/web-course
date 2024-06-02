@@ -1,0 +1,19 @@
+{
+  "welcome": "Добро пожаловать",
+  "characters": "Персонажи",
+  "comics": "Комиксы",
+  "favourites": "Избранное",
+  "data_provided_by": "Дата предоставлена",
+  "default_description": "Описание не найдено",
+  "you_have": "Вы",
+  "removed": "удалили",
+  "added": "добавили",
+  "favorite_changed": "Избранное",
+  "to_your_favorites": "в ваше избранное",
+  "loading": "Загрузка",
+  "search_for": "Поиск",
+  "characters_by_name": "персонажа по имени",
+  "comics_by_title": "комикса по названию",
+  "search": "ПОИСК"
+}
+
