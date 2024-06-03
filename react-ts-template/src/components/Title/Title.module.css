@@ -12,6 +12,7 @@
 .page_name{
   font-size: 48px;
   font-weight: bold;
+  color: var(--black);
 }
 
 .cards_count{

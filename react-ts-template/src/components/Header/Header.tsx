@@ -3,6 +3,7 @@ import classes from './Header.module.css';
 import { Link, useLocation } from 'react-router-dom';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
+import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher';
 
 export default function Header() {
   const { t } = useTranslation();
@@ -21,7 +22,10 @@ export default function Header() {
         <Link to='/comics' className={currentPath.includes('/comics') ? `${classes.navigation_link} ${classes.active}` : classes.navigation_link}>{t('comics')}</Link>
         <Link to='/favourites' className={currentPath.includes('/favourites') ? `${classes.navigation_link} ${classes.active}` : classes.navigation_link}>{t('favourites')}</Link>
       </nav>
-      <LanguageSwitcher />
+      <div className={classes.container}>
+        <LanguageSwitcher />
+        <ThemeSwitcher />
+      </div>
     </header>
   );
 }

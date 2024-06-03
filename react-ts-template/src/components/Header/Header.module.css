@@ -48,3 +48,9 @@
 .navigation_link.active {
     text-decoration: underline;
 }
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
