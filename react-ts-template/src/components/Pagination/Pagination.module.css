@@ -1,5 +1,3 @@
-@import "../../assets/styles/theme.css";
-
 .pagination {
   display: flex;
   position: relative;
@@ -9,8 +7,8 @@
 button {
   margin-top: 20px;
   margin-bottom: 20px;
-  border: white;
-  background-color: white;
+  border: var(--white);
+  background-color: var(--white);
   color: var(--danger);
   cursor: pointer;
   padding: 10px 2%;
@@ -18,10 +16,10 @@ button {
 
 button:hover {
   background-color: var(--warning);
-  color: white;
+  color: var(--white);
 }
 
 .active {
   background-color: var(--warning);
-  color: white;
+  color: var(--white);
 }

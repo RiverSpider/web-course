@@ -12,6 +12,7 @@
 .page_name{
   font-size: 48px;
   font-weight: bold;
+  color: var(--black);
 }
 
 .cards_count{
@@ -19,5 +20,5 @@
   margin-top: 10px;
   font-size: 30px;
   font-weight: bold;
-  color: gray;
+  color: var(--medium-grey);
 }

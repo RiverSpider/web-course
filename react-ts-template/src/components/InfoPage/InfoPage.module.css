@@ -1,3 +1,5 @@
+@import "../../assets/styles/theme.css";
+
 .img{
     width: 100%;
     background-position: center;
@@ -12,7 +14,7 @@
     width: 100%;
     height: auto;
     flex-wrap: wrap;
-    background-color: white;
+    background-color: var(--white);
     min-height: 100vh;
     display: flex;
 }

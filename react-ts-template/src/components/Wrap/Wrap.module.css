@@ -10,7 +10,7 @@
 .centeredMessage {
     min-height: 100vh;
     display: flex;
-    color: red;
+    color: var(--red);
     font-size: 60px;
     margin-top: 10%;
 }

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import classes from './DataCard.module.css'
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface DataCardProps {
   id: number;
@@ -13,6 +14,7 @@ interface DataCardProps {
 }
 
 const DataCard = ({ id, name, image, description, type, toggleFavorite, isFavorite }: DataCardProps) => {
+  const { t } = useTranslation();
   const [isHovered, setIsHovered] = useState(false);
 
   const heartImage = isFavorite ? "./src/assets/images/Favourites/heart_red.svg" : "./src/assets/images/Favourites/heart_white.svg";
@@ -33,10 +35,10 @@ const DataCard = ({ id, name, image, description, type, toggleFavorite, isFavori
         <img className={classes.img} src={image ? image : "./src/assets/images/Comics/DefaultComics.jpg"}/>
         <div className={classes.title}>{name}</div>
       </Link>
-      <div className={classes.description}>{description ? description : "No description provided"}</div>
+      <div className={classes.description}>{description ? description : `${t('default_description')}`}</div>
       <div className={classes.favoriteIcon} style={{ display: isHovered ? "flex" : "none" }} onClick={() => {
         toggleFavorite(id);
-        sendNotification('Favorite Changed', `You have ${isFavorite ? 'removed' : 'added'} ${name} to your favorites.`);
+        sendNotification(`${t('favorite_changed')}`, `${t('you_have')} ${isFavorite ? `${t('removed')}` : `${t('added')}`} ${name} ${t('to_your_favorites')}.`);
       }}>
         <img src={heartImage} />
       </div>
