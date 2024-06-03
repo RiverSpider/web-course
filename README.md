@@ -36,7 +36,7 @@ npm run dev
 
 Приложение доступно по ссылке:
 
-
+https://web-course-deploy.vercel.app/
 
 ## Скриншоты
 
