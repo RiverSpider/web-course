@@ -3,5 +3,10 @@
     --warning: #FFC832;
     --danger: rgba(237,26,59,1);
     --dark-grey: #555;
+    --medium-grey: #787878;
+    --light-grey: rgba(255, 255, 255, 0.5);
+    --black: black;
+    --white: white;
+    --red: red;
   }
   

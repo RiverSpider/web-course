@@ -19,5 +19,5 @@
   margin-top: 10px;
   font-size: 30px;
   font-weight: bold;
-  color: gray;
+  color: var(--medium-grey);
 }

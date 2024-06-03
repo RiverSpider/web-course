@@ -1,10 +1,8 @@
-@import "../../assets/styles/theme.css";
-
 .inner {
     overflow: hidden;
     box-sizing: border-box;
     position: relative;
-    border: 1px solid black;
+    border: 1px solid var(--black);
     border-width: 1px;
     margin: 40px;
     padding: 0px;
@@ -17,7 +15,7 @@
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
-        border: 1px solid rgba(255, 255, 255, 0.5);
+        border: 1px solid var(--light-grey);
         object-fit: fill;
     }
 
@@ -36,7 +34,7 @@
     .description {
         font-size: 20px;
         font-weight: 300;
-        color: #787878;
+        color: var(--medium-grey);
         padding: 0 10px;
         overflow: hidden;
         text-overflow: ellipsis;

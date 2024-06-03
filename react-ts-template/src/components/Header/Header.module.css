@@ -1,6 +1,4 @@
-@import "../../assets/styles/theme.css";
-    
-.header {
+  .header {
     position: relative;
     width: 100%;
     height: 80px;
