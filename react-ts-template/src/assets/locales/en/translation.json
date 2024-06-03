@@ -14,5 +14,6 @@
   "search_for": "Search for",
   "characters_by_name": "characters by Name",
   "comics_by_title": "comics by Title",
-  "search": "SEARCH"
+  "search": "SEARCH",
+  "no_results": "No results"
 }
