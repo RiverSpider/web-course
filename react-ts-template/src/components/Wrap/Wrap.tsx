@@ -1,6 +1,7 @@
 import { VirtuosoGrid } from "react-virtuoso";
 import DataCard from "./../DataCard/DataCard";
 import classes from "./Wrap.module.css";
+import { useTranslation } from "react-i18next";
 
 interface DataItem {
   thumbnail: {
@@ -16,8 +17,9 @@ interface DataItem {
 }
 
 const Wrap = ({ data, favorites, setFavorites, onLoadMore }: { data: DataItem[], favorites: any, setFavorites: any, onLoadMore: () => void, isLoading: boolean, total: number }) => {
+  const { t } = useTranslation();
   if (data.length === 0) {
-    return <div className={classes.box}><div className={classes.centeredMessage}>No results</div></div>;
+    return <div className={classes.box}><div className={classes.centeredMessage}>{t('no_results')}</div></div>;
   }
 
   const toggleFavorite = (id: number) => {
