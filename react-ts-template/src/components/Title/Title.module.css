@@ -1,0 +1,24 @@
+.box{
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 40px;
+  width: 95%;
+  height: 50px;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+}
+
+.page_name{
+  font-size: 48px;
+  font-weight: bold;
+  color: var(--black);
+}
+
+.cards_count{
+  margin-left: 20px;
+  margin-top: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--medium-grey);
+}

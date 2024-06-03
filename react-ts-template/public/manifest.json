@@ -1,0 +1,8 @@
+{
+  "name": "Marvel Characters Application",
+  "short_name": "Marvel Characters",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}

@@ -1,0 +1,30 @@
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  background-color: var(--dark-grey);
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.logo {
+  position: relative;
+  width: 100px;
+  height: 40px;
+  background: url(../../assets/images/marvel_logo.svg) no-repeat center;
+  background-size: cover;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.text {
+  position: relative;
+  color: var(--white);
+  font-size: 16px;
+  margin-left: 20px;
+  margin-top: 5px;
+}

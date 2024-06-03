@@ -1,0 +1,25 @@
+.pagination {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: var(--white);
+  background-color: var(--white);
+  color: var(--danger);
+  cursor: pointer;
+  padding: 10px 2%;
+}
+
+button:hover {
+  background-color: var(--warning);
+  color: var(--white);
+}
+
+.active {
+  background-color: var(--warning);
+  color: var(--white);
+}
