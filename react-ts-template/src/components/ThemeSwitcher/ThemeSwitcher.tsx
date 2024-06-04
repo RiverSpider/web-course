@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import classes from './ThemeSwitcher.module.css'
 
 const ThemeSwitcher = () => {
+  const { t } = useTranslation();
   const [theme, setTheme] = useState('light');
 
   useEffect(() => {
@@ -12,11 +15,10 @@ const ThemeSwitcher = () => {
   };
 
   return (
-    <button onClick={toggleTheme} style={{ background: 'none', border: 'none' }}>
-      {theme === 'light'
-        ? <div style={{ display: 'inline-block', width: '20px', height: '20px', backgroundColor: '#000' }}></div>
-        : <div style={{ display: 'inline-block', width: '20px', height: '20px', backgroundColor: '#fff' }}></div>}
-    </button>
+    <select value={theme} onChange={toggleTheme} className={classes.switcher}>
+      <option className={classes.text} value="light">{t('light')}</option>
+      <option className={classes.text} value="dark">{t('dark')}</option>
+    </select>
   );
 };
 
