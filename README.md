@@ -12,6 +12,8 @@
 
 - React, TypeScript, CSS, HTML
 
+- Marvel API: https://developer.marvel.com/
+
 ## Запуск приложения
 
 1. Клонируйте репозиторий.
