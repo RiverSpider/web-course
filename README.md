@@ -12,6 +12,8 @@
 
 - React, TypeScript, CSS, HTML
 
+- Marvel API: https://developer.marvel.com/
+
 ## Запуск приложения
 
 1. Клонируйте репозиторий.
@@ -36,7 +38,7 @@ npm run dev
 
 Приложение доступно по ссылке:
 
-
+https://web-course-deploy.vercel.app/
 
 ## Скриншоты
 

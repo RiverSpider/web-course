@@ -14,6 +14,9 @@
   "search_for": "Поиск",
   "characters_by_name": "персонажа по имени",
   "comics_by_title": "комикса по названию",
-  "search": "ПОИСК"
+  "search": "ПОИСК",
+  "no_results": "Нет результатов",
+  "light": "Светлая тема",
+  "dark": "Темная тема"
 }
 

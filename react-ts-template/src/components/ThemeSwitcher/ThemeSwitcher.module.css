@@ -1,0 +1,11 @@
+.switcher{
+    padding: 5px;
+    border-radius: 4px;
+    background-color: var(--white);
+    border-color: var(--black);
+    color: var(--black);
+}
+
+.text{
+    color: var(--black);
+}
